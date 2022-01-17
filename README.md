@@ -2,6 +2,7 @@
 ## implementation example
 ### latest version 1.0.8
 
+
 setting.gradle file
 ```sh
 dependencyResolutionManagement {
@@ -17,6 +18,7 @@ dependencyResolutionManagement {
 }
 ```
 
+
 build.gradle(:app)
 ```sh
 defaultConfig {
@@ -31,6 +33,7 @@ dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
 }
 ```
+
 
 to implement
 ```sh
