@@ -1,6 +1,6 @@
 # Location SDK example
 ## implementation example
-latest version 1.0.8
+### latest version 1.0.8
 
 setting.gradle file
 ```sh
