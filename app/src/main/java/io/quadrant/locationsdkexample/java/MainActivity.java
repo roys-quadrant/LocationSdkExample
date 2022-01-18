@@ -1,4 +1,4 @@
-package io.quadrant.locationsdkexample;
+package io.quadrant.locationsdkexample.java;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,11 +10,12 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.quadrant.sdk.locationdata.core.Client;
 import com.quadrant.sdk.locationdata.retrofit.GeneralCallback;
+
+import io.quadrant.locationsdkexample.R;
 
 public class MainActivity extends AppCompatActivity {
 
