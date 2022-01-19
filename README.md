@@ -118,9 +118,3 @@ override fun onResume() {
         Client.getInstance().unRegisterBroadcastReceiver(this)
     }
 ```
-#### Manifest
-```sh
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-```
