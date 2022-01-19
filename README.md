@@ -35,7 +35,8 @@ dependencies {
 ```
 
 
-to implement
+### to implement
+#### java
 ```sh
 Client.getInstance().setup(getApplication().getApplicationContext(), true,false, "YOUR INTEGRATION KEY", new Client.ResultCallback() {
                 @Override
@@ -75,5 +76,45 @@ Client.getInstance().startTrackingLocation(new GeneralCallback() {
     protected void onPause() {
         super.onPause();
         Client.getInstance().unRegisterBroadcastReceiver(this);
+    }
+```
+#### kotlin
+```sh
+Client.getInstance().setup(
+                application.applicationContext,
+                true,
+                false,
+                "YOUR INTEGRATION KEY",
+                object : Client.ResultCallback {
+                    override fun onSuccess(result: String) {
+                        checkPermissionsAndLaunch()
+                        Log.d("SetupSdkSuccess", result)
+                    }
+
+                    override fun onError(result: String) {
+                        Log.d("SetupSdkError", result)
+                    }
+                })
+```
+```sh
+Client.getInstance().startTrackingLocation(object : GeneralCallback {
+                override fun onSuccess(data: String) {
+                    Toast.makeText(this@MainActivity, data, Toast.LENGTH_LONG).show()
+                }
+
+                override fun onError(result: String) {
+                    Toast.makeText(this@MainActivity, result, Toast.LENGTH_LONG).show()
+                }
+            })
+```
+```sh
+override fun onResume() {
+        super.onResume()
+        Client.getInstance().registerBroadcastReceiver(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Client.getInstance().unRegisterBroadcastReceiver(this)
     }
 ```
