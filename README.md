@@ -118,3 +118,8 @@ override fun onResume() {
         Client.getInstance().unRegisterBroadcastReceiver(this)
     }
 ```
+
+#### Proguard
+```sh
+-keep class com.quadrant.sdk.locationdata.** {*;}
+```
