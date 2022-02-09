@@ -1,12 +1,10 @@
 # Location SDK example
 ## implementation example
-### latest version 1.0.8
+### latest version 1.0.9
 
 
-setting.gradle file
+setting.gradle or build.gradle(project level) file
 ```sh
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
@@ -15,11 +13,10 @@ dependencyResolutionManagement {
             url "https://quadrantsdk2.jfrog.io/artifactory/quadrant-sdk/"
         }
     }
-}
 ```
 
 
-build.gradle(:app)
+build.gradle(app level)
 ```sh
 defaultConfig {
         ....
@@ -29,7 +26,7 @@ defaultConfig {
     }
 dependencies {
     ....
-    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk:1.0.8'
+    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk:1.0.9'
     implementation "androidx.multidex:multidex:2.0.1"
 }
 ```
@@ -37,11 +34,12 @@ dependencies {
 
 ### to implement
 #### java
+
+would be best to implement setup at application class
 ```sh
-Client.getInstance().setup(getApplication().getApplicationContext(), true,false, "YOUR INTEGRATION KEY", new Client.ResultCallback() {
+Client.getInstance().setup(getApplication().getApplicationContext(), true, "YOUR INTEGRATION KEY", new Client.ResultCallback() {
                 @Override
                 public void onSuccess(String result) {
-                    checkPermissionsAndLaunch();
                     Log.d("SetupSdkSuccess", result);
                 }
 
@@ -51,8 +49,16 @@ Client.getInstance().setup(getApplication().getApplicationContext(), true,false,
                 }
             });
 ```
+
+implement start tracking location
 ```sh
-Client.getInstance().startTrackingLocation(new GeneralCallback() {
+            // USE Constans.PRIORITY_HIGH_ACCURACY: to request the most accurate locations available.
+            // This will return the finest location available.
+
+            // OR Constans.PRIORITY_BALANCED_POWER_ACCURACY: to request "block" level accuracy.
+            //Block level accuracy is considered to be about 100 meter accuracy. Using a coarse accuracy such as this often consumes less power.
+            
+            Client.getInstance().startTrackingLocation(this, getActivityResultRegistry(), Constants.PRIORITY_BALANCED_POWER_ACCURACY,new GeneralCallback() {
                 @Override
                 public void onSuccess(String data) {
                     Toast.makeText(MainActivity.this, data, Toast.LENGTH_LONG).show();
@@ -61,33 +67,18 @@ Client.getInstance().startTrackingLocation(new GeneralCallback() {
                 @Override
                 public void onError(String result) {
                     Toast.makeText(MainActivity.this, result, Toast.LENGTH_LONG).show();
-
                 }
             });
 ```
-```sh
-@Override
-    protected void onResume() {
-        super.onResume();
-        Client.getInstance().registerBroadcastReceiver(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Client.getInstance().unRegisterBroadcastReceiver(this);
-    }
-```
 #### kotlin
 ```sh
+would be best to implement setup at application class
 Client.getInstance().setup(
                 application.applicationContext,
                 true,
-                false,
                 "YOUR INTEGRATION KEY",
                 object : Client.ResultCallback {
                     override fun onSuccess(result: String) {
-                        checkPermissionsAndLaunch()
                         Log.d("SetupSdkSuccess", result)
                     }
 
@@ -96,27 +87,27 @@ Client.getInstance().setup(
                     }
                 })
 ```
-```sh
-Client.getInstance().startTrackingLocation(object : GeneralCallback {
-                override fun onSuccess(data: String) {
-                    Toast.makeText(this@MainActivity, data, Toast.LENGTH_LONG).show()
-                }
 
-                override fun onError(result: String) {
-                    Toast.makeText(this@MainActivity, result, Toast.LENGTH_LONG).show()
-                }
-            })
-```
+implement start tracking location
 ```sh
-override fun onResume() {
-        super.onResume()
-        Client.getInstance().registerBroadcastReceiver(this)
-    }
+             // USE Constans.PRIORITY_HIGH_ACCURACY: to request the most accurate locations available.
+            // This will return the finest location available.
 
-    override fun onPause() {
-        super.onPause()
-        Client.getInstance().unRegisterBroadcastReceiver(this)
-    }
+            // OR Constans.PRIORITY_BALANCED_POWER_ACCURACY: to request "block" level accuracy.
+            //Block level accuracy is considered to be about 100 meter accuracy. Using a coarse accuracy such as this often consumes less power.
+            
+            Client.getInstance().startTrackingLocation(this,
+                activityResultRegistry,
+                Constants.PRIORITY_BALANCED_POWER_ACCURACY,
+                object : GeneralCallback {
+                    override fun onSuccess(data: String) {
+                        Log.d("TrackingLocation", data)
+                    }
+
+                    override fun onError(result: String) {
+                        Log.d("TrackingLocation", result)
+                    }
+                })
 ```
 
 #### Proguard
