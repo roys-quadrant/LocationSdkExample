@@ -2,6 +2,7 @@ package io.quadrant.locationsdkexample.kotlin
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.quadrant.sdk.locationdata.core.Client

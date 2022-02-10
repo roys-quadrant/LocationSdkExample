@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
             Client.getInstance().startTrackingLocation(this, getActivityResultRegistry(), Constants.PRIORITY_BALANCED_POWER_ACCURACY,new GeneralCallback() {
                 @Override
                 public void onSuccess(String data) {
-                    Toast.makeText(MainActivity.this, data, Toast.LENGTH_LONG).show();
                     String log;
                     if(tvLogTracking.getText().toString().isEmpty()){
                         log = GetDate.getNow()+" "+"Tracking location success: "+data;
@@ -46,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(String result) {
-                    Toast.makeText(MainActivity.this, result, Toast.LENGTH_LONG).show();
                     String log = tvLogTracking.getText()+"\n"+GetDate.getNow()+" "+"Tracking location error: "+result;
                     tvLogTracking.setText(log);
                 }
