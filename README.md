@@ -115,3 +115,37 @@ if you want to implement proguard in your release app, add this on your proguar 
 ```sh
 -keep class com.quadrant.sdk.locationdata.** {*;}
 ```
+
+-----------------------------------------------------------------------
+
+## Non-Transitive
+### latest version 1.0.0
+On some special case, when your gradle library clash with ours regarding version issues, please use our non-transitive SDK.
+The different is on on build.gradle on app level. The rest is similar with the above.
+
+build.gradle(app level)
+```sh
+defaultConfig {
+        ....
+        multiDexEnabled true
+
+        ....
+    }
+dependencies {
+    ....
+    //THIS OUR SDK LIBRARY
+    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.0'
+    
+    //THIS LIBRARY NEEDED BY OUR SDK.
+    //Please replace library version number with your need
+    implementation 'com.squareup.retrofit2:retrofit:x.x.x'
+    implementation 'com.squareup.retrofit2:converter-gson:x.x.x'
+    implementation 'com.squareup.retrofit2:converter-scalars:x.x.x'
+    implementation 'com.squareup.okhttp3:logging-interceptor:x.x.x'
+    implementation 'com.google.android.gms:play-services-base:x.x.x'
+    implementation 'com.google.android.gms:play-services-location:x.x.x'
+    implementation 'com.google.android.gms:play-services-ads:x.x.x'
+    implementation 'com.google.android.gms:play-services-safetynet:x.x.x'
+    implementation "androidx.multidex:multidex:x.x.x"
+}
+```
