@@ -116,6 +116,8 @@ if you want to implement proguard in your release app, add this on your proguar 
 -keep class com.quadrant.sdk.locationdata.** {*;}
 ```
 
+
+
 -----------------------------------------------------------------------
 
 ## Non-Transitive
