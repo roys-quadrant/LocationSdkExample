@@ -2,6 +2,7 @@ package io.quadrant.locationsdkexample.java;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +22,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tvLogTracking = findViewById(R.id.tvLogTracking);
 
-        startTrackingLocation();
+        setupMobileProducerSDK();
+    }
+
+    private void setupMobileProducerSDK() {
+        try {
+            // Please Replace with your integration key
+            Client.getInstance().setup(this, true, "YOUR INTEGRATION KEY", new Client.ResultCallback() {
+                @Override
+                public void onSuccess(String result) {
+                    Log.d("setupMobileProducerSDK", result);
+                    startTrackingLocation();
+                }
+
+                @Override
+                public void onError(String result) {
+                    Log.d("setupMobileProducerSDK", "Error getting publisher's credential...");
+                }
+            });
+        } catch (Exception e) {
+            Log.d("setupMobileProducerSDK", "Error creating instance for SDK setup... " + e);
+        }
     }
 
     private void startTrackingLocation() {
