@@ -35,79 +35,100 @@ dependencies {
 ### to implement
 #### java
 
-would be best to implement setup at application class
+to implement setup and tracking
 ```sh
-Client.getInstance().setup(getApplication().getApplicationContext(), true, "YOUR INTEGRATION KEY", new Client.ResultCallback() {
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        setupMobileProducerSDK();
+    }
+    
+    private void setupMobileProducerSDK() {
+        try {
+            Client.getInstance().setup(this, true, com.wolvdev.testlocationsdk.Constants.TESTING_PROD, new Client.ResultCallback() {
                 @Override
-                public void onSuccess(String result) {
-                    Log.d("SetupSdkSuccess", result);
+                public void onSuccess(String s) {
+                    startTrackingLocation();
                 }
 
                 @Override
-                public void onError(String result) {
-                    Log.d("SetupSdkError", result);
+                public void onError(String s) {
                 }
             });
-```
-
-implement start tracking location
-```sh
+        } catch (Exception e) {
+        }
+    }
+    
+    private void startTrackingLocation() {
+        try {
             // USE Constans.PRIORITY_HIGH_ACCURACY: to request the most accurate locations available.
             // This will return the finest location available.
 
             // OR Constans.PRIORITY_BALANCED_POWER_ACCURACY: to request "block" level accuracy.
             //Block level accuracy is considered to be about 100 meter accuracy. Using a coarse accuracy such as this often consumes less power.
-            
-            Client.getInstance().startTrackingLocation(this, getActivityResultRegistry(), Constants.PRIORITY_BALANCED_POWER_ACCURACY,new GeneralCallback() {
+            Client.getInstance().startTrackingLocation(this, getActivityResultRegistry(), Constants.PRIORITY_HIGH_ACCURACY,new GeneralCallback() {
                 @Override
                 public void onSuccess(String data) {
-                    Toast.makeText(MainActivity.this, data, Toast.LENGTH_LONG).show();
                 }
 
                 @Override
                 public void onError(String result) {
-                    Toast.makeText(MainActivity.this, result, Toast.LENGTH_LONG).show();
                 }
             });
+        } catch (Exception e) {
+        }
+    }
+    
 ```
 #### kotlin
 ```sh
-would be best to implement setup at application class
-Client.getInstance().setup(
-                application.applicationContext,
-                true,
-                "YOUR INTEGRATION KEY",
-                object : Client.ResultCallback {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        setupMobileProducerSDK()
+    }
+
+    private fun setupMobileProducerSDK() {
+        try {
+            // Please Replace with your integration key
+            Client.getInstance()
+                .setup(this, true, "YOUR INTEGRATION KEY", object : Client.ResultCallback {
                     override fun onSuccess(result: String) {
-                        Log.d("SetupSdkSuccess", result)
+                        startTrackingLocation()
                     }
 
                     override fun onError(result: String) {
-                        Log.d("SetupSdkError", result)
                     }
                 })
-```
+        } catch (e: Exception) {
+        }
+    }
 
-implement start tracking location
-```sh
-             // USE Constans.PRIORITY_HIGH_ACCURACY: to request the most accurate locations available.
+    private fun startTrackingLocation() {
+        try {
+            // USE Constans.PRIORITY_HIGH_ACCURACY: to request the most accurate locations available.
             // This will return the finest location available.
 
             // OR Constans.PRIORITY_BALANCED_POWER_ACCURACY: to request "block" level accuracy.
             //Block level accuracy is considered to be about 100 meter accuracy. Using a coarse accuracy such as this often consumes less power.
-            
             Client.getInstance().startTrackingLocation(this,
                 activityResultRegistry,
                 Constants.PRIORITY_BALANCED_POWER_ACCURACY,
                 object : GeneralCallback {
                     override fun onSuccess(data: String) {
-                        Log.d("TrackingLocation", data)
+                        
                     }
 
                     override fun onError(result: String) {
-                        Log.d("TrackingLocation", result)
+                        
                     }
                 })
+        } catch (e: Exception) {
+            
+        }
+    }
 ```
 
 #### Proguard
