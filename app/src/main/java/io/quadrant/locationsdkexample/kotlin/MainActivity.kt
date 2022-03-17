@@ -18,26 +18,7 @@ class MainActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         tvLogTracking = findViewById(R.id.tvLogTracking)
-        setupMobileProducerSDK()
-    }
 
-    private fun setupMobileProducerSDK() {
-        try {
-            // Please Replace with your integration key
-            Client.getInstance()
-                .setup(this, true, "YOUR INTEGRATION KEY", object : Client.ResultCallback {
-                    override fun onSuccess(result: String) {
-                        Log.d("setupMobileProducerSDK", result)
-                        startTrackingLocation()
-                    }
-
-                    override fun onError(result: String) {
-                        Log.d("setupMobileProducerSDK", "Error getting publisher's credential...")
-                    }
-                })
-        } catch (e: Exception) {
-            Log.d("setupMobileProducerSDK", "Error creating instance for SDK setup... $e")
-        }
     }
 
     private fun startTrackingLocation() {
@@ -48,6 +29,8 @@ class MainActivity:AppCompatActivity() {
             // OR Constans.PRIORITY_BALANCED_POWER_ACCURACY: to request "block" level accuracy.
             //Block level accuracy is considered to be about 100 meter accuracy. Using a coarse accuracy such as this often consumes less power.
             Client.getInstance().startTrackingLocation(this,
+                true,
+                "YOUR KEY",
                 activityResultRegistry,
                 Constants.PRIORITY_BALANCED_POWER_ACCURACY,
                 object : GeneralCallback {
