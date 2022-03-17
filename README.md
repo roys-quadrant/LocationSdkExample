@@ -132,7 +132,7 @@ to implement setup and tracking
 ```
 
 #### Proguard
-if you want to implement proguard in your release app, add this on your proguar rules file
+if you want to implement obfuscate in your release app, add this on your proguard rules file
 ```sh
 -keep class com.quadrant.sdk.locationdata.** {*;}
 ```
