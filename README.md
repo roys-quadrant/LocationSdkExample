@@ -1,6 +1,6 @@
 # Location SDK example
 ## implementation example
-### latest version 1.0.9
+### latest version 1.0.12
 
 
 setting.gradle or build.gradle(project level) file
@@ -26,7 +26,7 @@ defaultConfig {
     }
 dependencies {
     ....
-    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk:1.0.9'
+    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk:1.0.12'
     implementation "androidx.multidex:multidex:2.0.1"
 }
 ```
@@ -42,23 +42,7 @@ to implement setup and tracking
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setupMobileProducerSDK();
-    }
-    
-    private void setupMobileProducerSDK() {
-        try {
-            Client.getInstance().setup(this, true, com.wolvdev.testlocationsdk.Constants.TESTING_PROD, new Client.ResultCallback() {
-                @Override
-                public void onSuccess(String s) {
-                    startTrackingLocation();
-                }
-
-                @Override
-                public void onError(String s) {
-                }
-            });
-        } catch (Exception e) {
-        }
+        startTrackingLocation()
     }
     
     private void startTrackingLocation() {
@@ -68,7 +52,7 @@ to implement setup and tracking
 
             // OR Constans.PRIORITY_BALANCED_POWER_ACCURACY: to request "block" level accuracy.
             //Block level accuracy is considered to be about 100 meter accuracy. Using a coarse accuracy such as this often consumes less power.
-            Client.getInstance().startTrackingLocation(this, getActivityResultRegistry(), Constants.PRIORITY_HIGH_ACCURACY,new GeneralCallback() {
+            Client.getInstance().startTrackingLocation(this, true, "YOUR KEY" getActivityResultRegistry(), Constants.PRIORITY_HIGH_ACCURACY,new GeneralCallback() {
                 @Override
                 public void onSuccess(String data) {
                 }
@@ -87,23 +71,8 @@ to implement setup and tracking
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setupMobileProducerSDK()
-    }
-
-    private fun setupMobileProducerSDK() {
-        try {
-            // Please Replace with your integration key
-            Client.getInstance()
-                .setup(this, true, "YOUR INTEGRATION KEY", object : Client.ResultCallback {
-                    override fun onSuccess(result: String) {
-                        startTrackingLocation()
-                    }
-
-                    override fun onError(result: String) {
-                    }
-                })
-        } catch (e: Exception) {
-        }
+     
+        startTrackingLocation()
     }
 
     private fun startTrackingLocation() {
@@ -114,6 +83,8 @@ to implement setup and tracking
             // OR Constans.PRIORITY_BALANCED_POWER_ACCURACY: to request "block" level accuracy.
             //Block level accuracy is considered to be about 100 meter accuracy. Using a coarse accuracy such as this often consumes less power.
             Client.getInstance().startTrackingLocation(this,
+                true,
+                "YOUR KEY"
                 activityResultRegistry,
                 Constants.PRIORITY_BALANCED_POWER_ACCURACY,
                 object : GeneralCallback {
@@ -142,7 +113,7 @@ if you want to implement obfuscate in your release app, add this on your proguar
 -----------------------------------------------------------------------
 
 ## Non-Transitive
-### latest version 1.0.0
+### latest version 1.0.3
 On some special case, when your gradle library clash with ours regarding version issues, please use our non-transitive SDK.
 The different is on on build.gradle on app level. The rest is similar with the above.
 
@@ -157,7 +128,7 @@ defaultConfig {
 dependencies {
     ....
     //THIS OUR SDK LIBRARY
-    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.0'
+    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.3'
     
     //THIS LIBRARY NEEDED BY OUR SDK.
     //Please replace library version number with your need
@@ -176,6 +147,7 @@ dependencies {
     implementation "androidx.work:work-runtime-ktx:x.x.x"
     //JAVA
     implementation "androidx.work:work-runtime:x.x.x"
+    implementation 'com.google.guava:guava:xx.x-android'
     
 }
 ```
