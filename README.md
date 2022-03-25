@@ -142,12 +142,13 @@ dependencies {
     implementation 'com.google.android.gms:play-services-safetynet:x.x.x'
     implementation "androidx.multidex:multidex:x.x.x"
     implementation "androidx.lifecycle:lifecycle-common-java8:x.x.x"
+    implementation 'com.google.guava:guava:xx.x-android'
+    
     //KOTLIN
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:x.x.x"
     implementation "androidx.work:work-runtime-ktx:x.x.x"
     //JAVA
     implementation "androidx.work:work-runtime:x.x.x"
-    implementation 'com.google.guava:guava:xx.x-android'
     
 }
 ```
