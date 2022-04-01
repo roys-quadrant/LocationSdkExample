@@ -131,7 +131,7 @@ dependencies {
     implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.3'
     
     //THIS LIBRARY NEEDED BY OUR SDK.
-    //Please replace library version number with your need
+    //Please replace library version number(x.x.x) with your need
     implementation 'com.squareup.retrofit2:retrofit:x.x.x'
     implementation 'com.squareup.retrofit2:converter-gson:x.x.x'
     implementation 'com.squareup.retrofit2:converter-scalars:x.x.x'
