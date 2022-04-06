@@ -1,6 +1,6 @@
 # Location SDK example
 ## implementation example
-### latest version 1.0.12
+### latest version 1.0.13
 
 
 setting.gradle or build.gradle(project level) file
@@ -113,7 +113,7 @@ if you want to implement obfuscate in your release app, add this on your proguar
 -----------------------------------------------------------------------
 
 ## Non-Transitive
-### latest version 1.0.3
+### latest version 1.0.4
 On some special case, when your gradle library clash with ours regarding version issues, please use our non-transitive SDK.
 The different is on on build.gradle on app level. The rest is similar with the above.
 
@@ -131,7 +131,7 @@ dependencies {
     implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.3'
     
     //THIS LIBRARY NEEDED BY OUR SDK.
-    //Please replace library version number with your need
+    //Please replace library version number(x.x.x) with your need
     implementation 'com.squareup.retrofit2:retrofit:x.x.x'
     implementation 'com.squareup.retrofit2:converter-gson:x.x.x'
     implementation 'com.squareup.retrofit2:converter-scalars:x.x.x'
@@ -142,12 +142,13 @@ dependencies {
     implementation 'com.google.android.gms:play-services-safetynet:x.x.x'
     implementation "androidx.multidex:multidex:x.x.x"
     implementation "androidx.lifecycle:lifecycle-common-java8:x.x.x"
+    implementation 'com.google.guava:guava:xx.x-android'
+    
     //KOTLIN
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:x.x.x"
     implementation "androidx.work:work-runtime-ktx:x.x.x"
     //JAVA
     implementation "androidx.work:work-runtime:x.x.x"
-    implementation 'com.google.guava:guava:xx.x-android'
     
 }
 ```
