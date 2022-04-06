@@ -1,6 +1,6 @@
 # Location SDK example
 ## implementation example
-### latest version 1.0.12
+### latest version 1.0.13
 
 
 setting.gradle or build.gradle(project level) file
@@ -113,7 +113,7 @@ if you want to implement obfuscate in your release app, add this on your proguar
 -----------------------------------------------------------------------
 
 ## Non-Transitive
-### latest version 1.0.3
+### latest version 1.0.4
 On some special case, when your gradle library clash with ours regarding version issues, please use our non-transitive SDK.
 The different is on on build.gradle on app level. The rest is similar with the above.
 
