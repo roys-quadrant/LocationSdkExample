@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.quadrant.sdk.locationdata.core.Client;
 import com.quadrant.sdk.locationdata.core.Constants;
 import com.quadrant.sdk.locationdata.retrofit.GeneralCallback;
+import com.quadrant.sdk.locationdata.util.PublisherCompliance;
 
 import io.quadrant.locationsdkexample.R;
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
             // OR Constans.PRIORITY_BALANCED_POWER_ACCURACY: to request "block" level accuracy.
             //Block level accuracy is considered to be about 100 meter accuracy. Using a coarse accuracy such as this often consumes less power.
-            Client.getInstance().startTrackingLocation(this, true, "YOUR KEY", getActivityResultRegistry(), Constants.PRIORITY_BALANCED_POWER_ACCURACY,new GeneralCallback() {
+            Client.getInstance().startTrackingLocation(this, true, "YOUR KEY", getActivityResultRegistry(), Constants.PRIORITY_BALANCED_POWER_ACCURACY, PublisherCompliance.yes,new GeneralCallback() {
                 @Override
                 public void onSuccess(String data) {
                     String log;
