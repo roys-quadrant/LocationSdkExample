@@ -52,7 +52,9 @@ to implement setup and tracking
 
             // OR Constans.PRIORITY_BALANCED_POWER_ACCURACY: to request "block" level accuracy.
             //Block level accuracy is considered to be about 100 meter accuracy. Using a coarse accuracy such as this often consumes less power.
-            Client.getInstance().startTrackingLocation(this, true, "YOUR KEY" getActivityResultRegistry(), Constants.PRIORITY_HIGH_ACCURACY,new GeneralCallback() {
+            
+            //PublisherCompliance constant from SDK (yes/no). To pass value from app to SDK if user 3rd party compliance.
+            Client.getInstance().startTrackingLocation(this, true, "YOUR KEY", getActivityResultRegistry(), Constants.PRIORITY_BALANCED_POWER_ACCURACY, PublisherCompliance.yes,new GeneralCallback() {
                 @Override
                 public void onSuccess(String data) {
                 }
@@ -82,11 +84,14 @@ to implement setup and tracking
 
             // OR Constans.PRIORITY_BALANCED_POWER_ACCURACY: to request "block" level accuracy.
             //Block level accuracy is considered to be about 100 meter accuracy. Using a coarse accuracy such as this often consumes less power.
+            
+            //PublisherCompliance constant from SDK (yes/no). To pass value from app to SDK if user 3rd party compliance.
             Client.getInstance().startTrackingLocation(this,
                 true,
                 "YOUR KEY"
                 activityResultRegistry,
                 Constants.PRIORITY_BALANCED_POWER_ACCURACY,
+                PublisherCompliance.yes,
                 object : GeneralCallback {
                     override fun onSuccess(data: String) {
                         
