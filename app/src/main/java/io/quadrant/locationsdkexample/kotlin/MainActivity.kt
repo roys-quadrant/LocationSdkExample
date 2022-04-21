@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.quadrant.sdk.locationdata.core.Client
 import com.quadrant.sdk.locationdata.core.Constants
 import com.quadrant.sdk.locationdata.retrofit.GeneralCallback
+import com.quadrant.sdk.locationdata.util.PublisherCompliance
 import io.quadrant.locationsdkexample.R
 import io.quadrant.locationsdkexample.java.GetDate
 
@@ -33,6 +34,7 @@ class MainActivity:AppCompatActivity() {
                 "YOUR KEY",
                 activityResultRegistry,
                 Constants.PRIORITY_BALANCED_POWER_ACCURACY,
+                PublisherCompliance.yes,
                 object : GeneralCallback {
                     override fun onSuccess(data: String) {
                         val log:String
