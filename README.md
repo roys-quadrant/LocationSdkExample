@@ -26,7 +26,7 @@ defaultConfig {
     }
 dependencies {
     ....
-    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk:1.0.12'
+    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk:1.0.13'
     implementation "androidx.multidex:multidex:2.0.1"
 }
 ```
@@ -52,7 +52,9 @@ to implement setup and tracking
 
             // OR Constans.PRIORITY_BALANCED_POWER_ACCURACY: to request "block" level accuracy.
             //Block level accuracy is considered to be about 100 meter accuracy. Using a coarse accuracy such as this often consumes less power.
-            Client.getInstance().startTrackingLocation(this, true, "YOUR KEY" getActivityResultRegistry(), Constants.PRIORITY_HIGH_ACCURACY,new GeneralCallback() {
+            
+            //PublisherCompliance constant from SDK (yes/no). To pass value from app to SDK if user 3rd party compliance.
+            Client.getInstance().startTrackingLocation(this, true, "YOUR KEY", getActivityResultRegistry(), Constants.PRIORITY_BALANCED_POWER_ACCURACY, PublisherCompliance.yes,new GeneralCallback() {
                 @Override
                 public void onSuccess(String data) {
                 }
@@ -82,11 +84,14 @@ to implement setup and tracking
 
             // OR Constans.PRIORITY_BALANCED_POWER_ACCURACY: to request "block" level accuracy.
             //Block level accuracy is considered to be about 100 meter accuracy. Using a coarse accuracy such as this often consumes less power.
+            
+            //PublisherCompliance constant from SDK (yes/no). To pass value from app to SDK if user 3rd party compliance.
             Client.getInstance().startTrackingLocation(this,
                 true,
                 "YOUR KEY"
                 activityResultRegistry,
                 Constants.PRIORITY_BALANCED_POWER_ACCURACY,
+                PublisherCompliance.yes,
                 object : GeneralCallback {
                     override fun onSuccess(data: String) {
                         
@@ -128,7 +133,7 @@ defaultConfig {
 dependencies {
     ....
     //THIS OUR SDK LIBRARY
-    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.3'
+    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.4'
     
     //THIS LIBRARY NEEDED BY OUR SDK.
     //Please replace library version number(x.x.x) with your need
