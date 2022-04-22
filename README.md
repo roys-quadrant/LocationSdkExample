@@ -1,6 +1,6 @@
 # Location SDK example
 ## implementation example
-### latest version 1.0.13
+### latest version 1.0.14
 
 
 setting.gradle or build.gradle(project level) file
@@ -26,7 +26,7 @@ defaultConfig {
     }
 dependencies {
     ....
-    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk:1.0.13'
+    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk:1.0.14'
     implementation "androidx.multidex:multidex:2.0.1"
 }
 ```
@@ -118,7 +118,7 @@ if you want to implement obfuscate in your release app, add this on your proguar
 -----------------------------------------------------------------------
 
 ## Non-Transitive
-### latest version 1.0.4
+### latest version 1.0.5
 On some special case, when your gradle library clash with ours regarding version issues, please use our non-transitive SDK.
 The different is on on build.gradle on app level. The rest is similar with the above.
 
@@ -133,7 +133,7 @@ defaultConfig {
 dependencies {
     ....
     //THIS OUR SDK LIBRARY
-    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.4'
+    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.5'
     
     //THIS LIBRARY NEEDED BY OUR SDK.
     //Please replace library version number(x.x.x) with your need
