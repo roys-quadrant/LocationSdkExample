@@ -1,6 +1,6 @@
 # Location SDK example
 ## implementation example
-### latest version 1.0.15
+### latest version 1.0.16
 
 
 setting.gradle or build.gradle(project level) file
@@ -26,7 +26,7 @@ defaultConfig {
     }
 dependencies {
     ....
-    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk:1.0.14'
+    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk:1.0.16'
     implementation "androidx.multidex:multidex:2.0.1"
 }
 ```
@@ -41,8 +41,16 @@ to implement setup and tracking
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        btnStart = findViewById(R.id.btnStart);
+        btnStop = findViewById(R.id.btnStop);
 
-        startTrackingLocation()
+        btnStart.setOnClickListener(view -> {
+            startTrackingLocation();
+        });
+        btnStop.setOnClickListener(view -> {
+           Client.getInstance().stopTrackingLocation();
+        });
     }
     
     private void startTrackingLocation() {
@@ -74,7 +82,15 @@ to implement setup and tracking
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
      
-        startTrackingLocation()
+        btnStart = findViewById(R.id.btnStart)
+        btnStop = findViewById(R.id.btnStop)
+
+        btnStart.setOnClickListener {
+            startTrackingLocation()
+        }
+        btnStop.setOnClickListener{
+            Client.getInstance().stopTrackingLocation()
+        }
     }
 
     private fun startTrackingLocation() {
@@ -118,7 +134,7 @@ if you want to implement obfuscate in your release app, add this on your proguar
 -----------------------------------------------------------------------
 
 ## Non-Transitive
-### latest version 1.0.6
+### latest version 1.0.7
 On some special case, when your gradle library clash with ours regarding version issues, please use our non-transitive SDK.
 The different is on on build.gradle on app level. The rest is similar with the above.
 
@@ -133,7 +149,7 @@ defaultConfig {
 dependencies {
     ....
     //THIS OUR SDK LIBRARY
-    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.5'
+    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.7'
     
     //THIS LIBRARY NEEDED BY OUR SDK.
     //Please replace library version number(x.x.x) with your need
