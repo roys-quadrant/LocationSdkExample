@@ -3,6 +3,7 @@ package io.quadrant.locationsdkexample.java;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,14 +17,22 @@ import io.quadrant.locationsdkexample.R;
 public class MainActivity extends AppCompatActivity {
 
     private TextView tvLogTracking;
+    private Button btnStart, btnStop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tvLogTracking = findViewById(R.id.tvLogTracking);
+        btnStart = findViewById(R.id.btnStart);
+        btnStop = findViewById(R.id.btnStop);
 
-        startTrackingLocation();
+        btnStart.setOnClickListener(view -> {
+            startTrackingLocation();
+        });
+        btnStop.setOnClickListener(view -> {
+           Client.getInstance().stopTrackingLocation();
+        });
     }
 
     private void startTrackingLocation() {

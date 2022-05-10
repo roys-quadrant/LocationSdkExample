@@ -2,7 +2,8 @@ package io.quadrant.locationsdkexample.kotlin
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.quadrant.sdk.locationdata.core.Client
@@ -14,12 +15,22 @@ import io.quadrant.locationsdkexample.java.GetDate
 
 class MainActivity:AppCompatActivity() {
     private lateinit var tvLogTracking: TextView
+    private lateinit var btnStart: Button
+    private lateinit var btnStop: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         tvLogTracking = findViewById(R.id.tvLogTracking)
-        startTrackingLocation()
+        btnStart = findViewById(R.id.btnStart)
+        btnStop = findViewById(R.id.btnStop)
+
+        btnStart.setOnClickListener {
+            startTrackingLocation()
+        }
+        btnStop.setOnClickListener{
+            Client.getInstance().stopTrackingLocation()
+        }
     }
 
     private fun startTrackingLocation() {

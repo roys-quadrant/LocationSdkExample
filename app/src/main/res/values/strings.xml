@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LocationSdkExample</string>
+    <string name="start">Start tracking</string>
+    <string name="stop">Stop tracking</string>
 </resources>
