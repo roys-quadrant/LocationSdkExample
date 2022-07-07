@@ -1,6 +1,6 @@
 # Location SDK example
 ## implementation example
-### latest version 1.0.17
+### latest version 1.0.18
 
 
 setting.gradle or build.gradle(project level) file
@@ -26,7 +26,7 @@ defaultConfig {
     }
 dependencies {
     ....
-    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk:1.0.17'
+    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk:1.0.18'
     implementation "androidx.multidex:multidex:2.0.1"
 }
 ```
@@ -134,7 +134,7 @@ if you want to implement obfuscate in your release app, add this on your proguar
 -----------------------------------------------------------------------
 
 ## Non-Transitive
-### latest version 1.0.8
+### latest version 1.0.9
 On some special case, when your gradle library clash with ours regarding version issues, please use our non-transitive SDK.
 The different is on on build.gradle on app level. The rest is similar with the above.
 
@@ -149,7 +149,7 @@ defaultConfig {
 dependencies {
     ....
     //THIS OUR SDK LIBRARY
-    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.8'
+    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.9'
     
     //THIS LIBRARY NEEDED BY OUR SDK.
     //Please replace library version number(x.x.x) with your need
@@ -160,7 +160,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-base:x.x.x'
     implementation 'com.google.android.gms:play-services-location:x.x.x'
     implementation 'com.google.android.gms:play-services-ads:x.x.x'
-    implementation 'com.google.android.gms:play-services-safetynet:x.x.x'
     implementation "androidx.multidex:multidex:x.x.x"
     implementation "androidx.lifecycle:lifecycle-common-java8:x.x.x"
     implementation 'com.google.guava:guava:xx.x-android'
