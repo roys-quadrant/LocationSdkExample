@@ -65,6 +65,7 @@ to implement setup and tracking
             Client.getInstance().startTrackingLocation(this, true, "YOUR KEY", getActivityResultRegistry(), Constants.PRIORITY_BALANCED_POWER_ACCURACY, PublisherCompliance.yes,new GeneralCallback() {
                 @Override
                 public void onSuccess(String data) {
+                    //PUT YOUR FIREBASE EVENT HERE
                 }
 
                 @Override
@@ -110,7 +111,7 @@ to implement setup and tracking
                 PublisherCompliance.yes,
                 object : GeneralCallback {
                     override fun onSuccess(data: String) {
-                        
+                        //PUT YOUR FIREBASE EVENT HERE
                     }
 
                     override fun onError(result: String) {
