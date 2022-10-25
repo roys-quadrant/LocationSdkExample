@@ -26,7 +26,7 @@ defaultConfig {
     }
 dependencies {
     ....
-    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk:1.0.19'
+    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk:1.0.20'
     implementation "androidx.multidex:multidex:2.0.1"
 }
 ```
@@ -150,7 +150,7 @@ defaultConfig {
 dependencies {
     ....
     //THIS OUR SDK LIBRARY
-    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.10'
+    implementation 'io.quadrant.sdk.locationdata:data-acquisition-sdk-non-transitive:1.0.11'
     
     //THIS LIBRARY NEEDED BY OUR SDK.
     //Please replace library version number(x.x.x) with your need
